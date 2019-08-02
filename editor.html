@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Editor</title>
+
+    <link rel="stylesheet" href="resource/css/bootstrap.css">
+    <link rel="stylesheet" href="resource/css/main.css">
+</head>
+
+<body onload="pageData()">
+
+    <header>
+        <p class="logo">Rupkotha</p>
+        <div class="d-flex justify-content-between">
+            <span>
+                <a href="index.html" class="btn btn-outline-primary"><b>Home</b></a>
+                <a href="#" class="btn btn-outline-primary"><b>Dashboard</b></a></span>
+
+            <span>
+                <a href="create.html" class="btn btn-danger">New Movement</a>
+                <a href="editor.html" class="btn btn-danger">Editor</a>
+            </span>
+            <span>
+                <a href="login.html" class="btn btn-outline-primary"><b>Log in</b></a>
+                <a href="registration.html" class="btn btn-outline-primary"><b> Registration</b></a></span>
+        </div>
+    </header>
+    <br><br><br>
+
+    <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary" onclick="previous()">Previous</button>
+        <span>
+            <input type="number" name="book" id="goBook">
+            <input type="number" name="page" id="goPage">
+            <button type="submit" class="btn btn-light" onclick="go()"><b>GO</b></button>
+            <input type="text" name="page" id="newVolunteer" placeholder="new volunteer">
+        </span>
+
+        <button type="submit" class="btn btn-primary" onclick="next()">Next</button>
+    </div>
+
+    <div>
+        <input type="number" placeholder="Project ID" id="projectid" readonly>
+        <input type="number" placeholder="page" id="page" readonly>
+        <input type="number" placeholder="version" id="version" readonly>
+        <input type="text" placeholder="format" id="format" readonly>
+        <input type="text" placeholder="proof" id="proof" readonly>
+        <input type="text" placeholder="Volunteer" id="volunteer" readonly>
+    </div>
+
+
+
+    <table>
+        <thead>
+            <th>Text</th>
+            <th>Image</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <textarea name="text" id="textid" cols="80" rows="15"></textarea>
+                </td>
+                <td>
+                    <iframe src="#" id="image"  alt="Page Image" height="400" width="800" allowfullscreen></iframe>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <table>
+        <tr><button type="submit" class="btn btn-success" onclick="submit()">SUBMIT</button></tr>
+        <tr>
+            <td><button type="submit" class="btn btn-sm btn-primary" onclick="addModified()">Modified</button></td>
+            <td><button type="submit" class="btn btn-sm btn-warning" onclick="addFilter()">Filter</button></td>
+            <td><button type="submit" class="btn btn-sm btn-warning" onclick="addRaw()">Raw</button></td>
+            <td><button type="submit" class="btn btn-sm btn-danger" onclick="clearText()">Clear</button></td>
+        </tr>
+    </table>
+
+
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase.js"></script>
+    <script src="resource/javascript/main.js"></script>
+
+</body>
+
+</html>
