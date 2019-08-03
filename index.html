@@ -10,7 +10,7 @@
     <title>Homepage</title>
 </head>
 
-<body>
+<body onload="isLogin()">
     <header>
         <p class="logo">Rupkotha</p>
         <div class="d-flex justify-content-between">
@@ -23,8 +23,10 @@
                 <a href="editor.html" class="btn btn-danger">Editor</a>
             </span>
             <span>
-                <a href="login.html" class="btn btn-outline-primary"><b>Log in</b></a>
-                <a href="registration.html" class="btn btn-outline-primary"><b> Registration</b></a></span>
+                <a href="login.html" class="btn btn-outline-primary" id="login-button"><b>Log in</b></a>
+                <a href="logout.html" class="btn btn-outline-primary" id="logout-button" onclick="logout()"><b>Log out</b></a>
+                <a href="registration.html" class="btn btn-outline-primary"><b> Registration</b></a>
+            </span>
         </div>
     </header>
     <br><br><br>
@@ -36,7 +38,7 @@
         <div class="card" style="width: 20rem;">
             <div class="card-body">
 
-                <h4 class="card-title">Book 10051 <span class="badge badge-primary">New</span></h4>
+                <h4 class="card-title">Book 10001 <span class="badge badge-primary">New</span></h4>
 
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                     card's content.</p>
@@ -60,7 +62,7 @@
 
         <div class="card" style="width: 20rem;">
             <div class="card-body">
-                <h4 class="card-title">Book 10052 <span class="badge badge-primary">New</span></h4>
+                <h4 class="card-title">Book 10002 <span class="badge badge-primary">New</span></h4>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                     card's content.</p>
                 <br>
@@ -85,7 +87,7 @@
 
         <div class="card" style="width: 20rem;">
             <div class="card-body">
-                <h4 class="card-title">Book 10053 <span class="badge badge-primary">New</span></h4>
+                <h4 class="card-title">Book 10003 <span class="badge badge-primary">New</span></h4>
                 <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                     card's content.</p>
                 <br>
@@ -117,9 +119,10 @@
     </footer>
 
 
-    
+
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase.js"></script>
     <script src="resource/javascript/main.js"></script>
+
 </body>
 
 </html>

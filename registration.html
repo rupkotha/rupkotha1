@@ -39,22 +39,22 @@
         <img src="resource/picture/arrow.png" alt="arrow">
         <input type="text" name="lastname" id="lastname" placeholder="Last Name">
         <br>
-        <br>
         <img src="resource/picture/user.png" alt="user">
-        <input type="text" name="username" id="username" placeholder="Username" required>
+        <input type="text" name="username" id="username" placeholder="Username">
+        <br>
         <br>
         <img src="resource/picture/email.png" alt="email">
-        <input type="text" name="email" id="email" placeholder="Email" required>
+        <input type="email" name="email" id="email" placeholder="Email" required>
         <br>
         <img src="resource/picture/lock.png" alt="password">
-        <input type="text" name="password" id="password" placeholder="Password" required>
+        <input type="password" name="password" id="password" placeholder="Password" required>
         <br>
-        <input type="button" value="Registration" class="btn btn-success">
+        <input type="button" value="Registration" class="btn btn-success" onclick="registration()">
         <p>Already have account? <a href="login.html"><b>Log in</b></a></p>
     </div>
 
 
-    
+
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase.js"></script>
     <script src="resource/javascript/main.js"></script>
 </body>
