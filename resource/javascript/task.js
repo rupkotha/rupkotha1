@@ -1,8 +1,13 @@
-let bookID = 1
+let bookID = 6
 let page = 1
 
 let book = 10000 + bookID + ''
-let text, version, newVolunteer='', email;
+let text, version, newVolunteer, email;
+
+let title, writer, totalPages, formatedPages, proofedPages, bestVolunteer;
+
+let taskPages = [], lastPageInTask = 0;
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,13 +22,97 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 let db = firebase.database();
+
+function getBookDetails() {
+    book = (10000 + bookID).toString();
+    ref = db.ref("book/" + book + "/combine");
+    ref.on("value", function (snapsot) {
+        title = snapsot.val().title;
+        writer = snapsot.val().writer;
+        totalPages = snapsot.val().pages;
+        formatedPages = snapsot.val().format;
+        proofedPages = snapsot.val().proof;
+    });
+}
+
+function getTaskedPageNumber() {
+    taskPages = [];
+    for (let count = 0, i = lastPageInTask + 1; i <= totalPages && count < 5; i++) {
+        if (proofedPages[i] == false) {
+            count++;
+            taskPages.push(i);
+            lastPageInTask = i;
+        }
+    }
+
+    if (taskPages.length == 0) {
+        for (i = 0; i < totalPages; i++)
+            if (proofedPages[i] == false) {
+                lastPageInTask = 0;
+                break;
+            }
+
+        if (lastPageInTask == 0)
+            getTaskedPageNumber();
+            else
+            alert("All Completed in this book. \nPlease change Book ID");
+    }
+    console.log(taskPages)
+}
+
+function newTask() {
+    getBookDetails();
+    // for (i = 0; i < 100000; i++);
+    getTaskedPageNumber()
+}
+
+
+function newTaskaa() {
+
+    pageName = 1000 + page + '';
+    ref = db.ref("book/" + book + "/pages/" + pageName);
+
+    ref.on("value", function (snapsot) {
+        version = snapsot.val().version;
+
+        document.getElementById("image").src = snapsot.val().image;
+        document.getElementById("version").value = version;
+        document.getElementById("volunteer").value = snapsot.val().volunteer;
+        document.getElementById("format").value = snapsot.val().format;
+        document.getElementById("proof").value = snapsot.val().proof;
+        document.getElementById("page").value = page;
+        document.getElementById("projectid").value = book;
+        document.getElementById("goPage").value = page;
+        document.getElementById("goBook").value = Number(book);
+
+        if (newVolunteer == '')
+            newVolunteer = 'UNKNOWN'
+
+        document.getElementById("newVolunteer").value = newVolunteer
+
+        modified = snapsot.val().text;
+        raw = snapsot.val().raw;
+        filter = snapsot.val().filter;
+
+        document.getElementById("textid").value = modified;
+    })
+}
+
+
+
+
+
+
+
+
+
 let obj = document.getElementById("textid");
 
 firebase.auth().onAuthStateChanged(function (user) {
-    if (user){
+    if (user) {
         newVolunteer = user.email;
-    document.getElementById('login-button').innerHTML = newVolunteer;
-    document.getElementById('login-button').setAttribute('href', "#");
+        document.getElementById('login-button').innerHTML = newVolunteer;
+        document.getElementById('login-button').setAttribute('href', "#");
     }
 });
 
@@ -66,36 +155,7 @@ function addFilter() {
     obj.value = filter;
 }
 
-function pageData() {
 
-    pageName = 1000 + page + '';
-    ref = db.ref("book/" + book + "/pages/" + pageName);
-
-    ref.on("value", function (snapsot) {
-        version = snapsot.val().version;
-
-        document.getElementById("image").src = snapsot.val().image;
-        document.getElementById("version").value = version;
-        document.getElementById("volunteer").value = snapsot.val().volunteer;
-        document.getElementById("format").value = snapsot.val().format;
-        document.getElementById("proof").value = snapsot.val().proof;
-        document.getElementById("page").value = page;
-        document.getElementById("projectid").value = book;
-        document.getElementById("goPage").value = page;
-        document.getElementById("goBook").value = Number(book);
-
-        if (newVolunteer == '')
-            newVolunteer = 'UNKNOWN'
-
-        document.getElementById("newVolunteer").value = newVolunteer
-
-        modified = snapsot.val().text;
-        raw = snapsot.val().raw;
-        filter = snapsot.val().filter;
-
-        document.getElementById("textid").value = modified;
-    })
-}
 
 function go() {
     page = Number(document.getElementById("goPage").value)
@@ -165,7 +225,7 @@ function logout() {
 
 
 
-function goParts(){
+function goParts() {
     ref = db.ref("book/" + book + "/parts");
 
     ref.on("value", function (snapsot) {
