@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="resource/css/task.css">
+    <link rel="stylesheet" href="resource/css/bootstrap.css">
+    <title>Task</title>
+</head>
+
+<body>
+    <header>
+        <p class="logo">Rupkotha</p>
+        <div class="d-flex justify-content-between">
+            <span>
+                <a href="index.html" class="btn btn-outline-primary"><b>Home</b></a>
+                <a href="create.html" class="btn btn-outline-primary"><b>Request New Book</b></a></span>
+
+            <span>
+            </span>
+            <span>
+                <a href="editor.html" class="btn btn-danger" id="editor-button">Editor</a>
+                <a href="profile.html" class="btn btn-outline-primary" id="profile-button"><b>Profile</b></a>
+                <span id="login-header">
+                    <a href="login.html" class="btn btn-outline-primary" id="login-button"><b>Log in</b></a>
+                    <a href="registration.html" class="btn btn-outline-primary" id="registration-button"><b>
+                            Registration</b></a></span>
+            </span>
+
+        </div>
+    </header>
+
+
+
+    <section class="d-flex justify-content-between">
+        <aside id="aside-left">
+            <table>
+                <legend>Page Details</legend>
+                <tr>
+                    <th>Book ID</th>
+                    <td class="bookid-table">10010</td>
+                </tr>
+                <tr>
+                    <th>Page </th>
+                    <td class="page-table">1</td>
+                </tr>
+                <tr>
+                    <th>Version</th>
+                    <td class="version-table">3</td>
+                </tr>
+                <tr>
+                    <th>Proof</th>
+                    <td class="proof-table">No</td>
+                </tr>
+                <tr>
+                    <th>Format</th>
+                    <td class="format-table">No</td>
+                </tr>
+                <tr>
+                    <th>Volunteer</th>
+                    <th class="volunteer-table">Rupkotha</th>
+                </tr>
+                <tr>
+                    <th>Page Image</th>
+                    <td><a href="#" class="page-image-table">Link</a></td>
+                </tr>
+            </table>
+        </aside>
+
+
+        <nav id="nav-middle">
+            <h2>Some Uncompleted Pages</h2>
+            <div class="input-group mb-3 col-sm-10">
+                <b class="form-control">Book ID :</b>
+                <input type="number" value="10001" class="form-control" placeholder="Book ID">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" onclick="newTask()">New Task</button>
+                </div>
+            </div>
+
+
+            <div class="btn-group" role="group">
+                <button type="button" id="oneid" class="btn btn-secondary active" onclick="onePage()">One</button>
+                <button type="button" id="twoid" class="btn btn-secondary" onclick="twoPage()">Two</button>
+                <button type="button" id="threeid" class="btn btn-secondary" onclick="threePage()">Three</button>
+                <button type="button" id="fourid" class="btn btn-secondary" onclick="fourPage()">Four</button>
+                <button type="button" id=" fiveid" class="btn btn-secondary" onclick="fivePage()">Five</button>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning" disabled>
+                    >>Result <span class="badge badge-light">20%</span>
+                </button>
+            </div>
+        </nav>
+
+        <aside id="aside-right">
+            <table class="book-table">
+                <legend>Book Details</legend>
+                <tr>
+                    <th>Book ID</th>
+                    <td class="bookid-table">10010</td>
+                </tr>
+                <tr>
+                    <th>Book Name</th>
+                    <td class="bookname-table">Placeholder Placeholder</td>
+                </tr>
+                <tr>
+                    <th>Writer</th>
+                    <td class="writer-table">Placeholder Placeholder</td>
+                </tr>
+                <tr>
+                    <th>Total Pages</th>
+                    <td class="totalpages-table">275</td>
+                </tr>
+                <tr>
+                    <th>Formated</th>
+                    <td class="formatedpages-table">120</td>
+                </tr>
+                <tr>
+                    <th>Proofed</th>
+                    <td class="proofedpages-table">12</td>
+                </tr>
+                <tr>
+                    <th>Best Volunteer</th>
+                    <td class="bestvolunteer-table">Rupkotha</td>
+                </tr>
+            </table>
+        </aside>
+    </section>
+
+    <main>
+        <table>
+            <thead>
+                <th>Text</th>
+                <th>Image</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <textarea name="text" id="textid" cols="80" rows="15" wrap="soft" spellcheck="on"></textarea>
+                    </td>
+                    <td>
+                        <iframe src="" id="imageid" alt="Page Image" height="400" width="800"></iframe>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <footer class="d-flex justify-content-between">
+        <div id="footer-div-left">
+            <b class="form-check-label"> I did </b>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="proof-checkbox">
+                <label class="form-check-label">Proof</label>
+
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="format-checkbox">
+                <label class="form-check-label">Format</label>
+            </div>
+            <button type="submit" class="btn btn-success" onclick="submit()" disabled>SUBMIT</button>
+        </div>
+        <div id="footer-div-right">
+            <div class="input-group mb-3 col-11">
+                <b class="form-control">VERSION :</b>
+                <input type="number" value="1" class="form-control" placeholder="Version">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" onclick="goVersion()">GO</button>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn btn-primary" onclick="getLatest()">Last Edited</button>
+                <button type="submit" class="btn btn-warning" onclick="getFilter()">Filter Text</button>
+                <button type="submit" class="btn btn-warning" onclick="getRaw()">Raw Text</button>
+                <button type="submit" class="btn btn-danger" onclick="clearTextArea()">Clear</button>
+            </div>
+        </div>
+    </footer>
+</body>
+<script src="https://www.gstatic.com/firebasejs/6.3.3/firebase.js"></script>
+<script src="resource/javascript/task.js"></script>
+</html>
